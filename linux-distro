@@ -1,0 +1,264 @@
+#!/bin/bash
+
+rd="\e[1;31m"
+gr="\e[1;32m"
+yl="\e[1;33m"
+bl="\e[1;36m"
+
+alp="alpine"
+arch="archlinux"
+deb="debian"
+fed="fedora"
+open="opensuse"
+void="void"
+ub="ubuntu"
+status=""
+
+details(){
+
+echo -e "${gr} *  ${yl}${1}\n"
+echo -e "${bl}    alias: ${yl}${2}"
+echo -e "${bl}    status: ${3}\n"
+
+}
+
+setup(){
+if [ ! -f /data/data/com.termux/files/usr/bin/linux-distro ]
+then
+	cp -f linux-distro /data/data/com.termux/files/usr/bin
+fi
+}
+setup
+
+lst(){
+
+if [ -d /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/${1} ]
+then
+       	status="${gr}INSTALLED"
+	details "${2}" "${3}" "${status}"
+
+else
+	status="${rd}NOT INSTALLED"
+	details "${2}" "${3}" "${status}"
+fi
+}
+
+super_lst(){
+echo -e "\n${bl}Supported [${gr}DISTRIBUTIONS${bl}] and [${gr}ARGUMENTS${bl}]\n"
+
+lst "${alp}" "Alpine Linux (edge)" "alpine"
+lst "${arch}" "Arch Linux" "archlinux"
+lst "${deb}" "Debian (bullseye)" "debian"
+lst "${fed}" "Fedora (34)" "fedora"
+lst "${un}" "Ubuntu (hirsute)" "ubuntu"
+lst "${open}" "OpenSUSE (Tumbleweed)" "opensuse"
+lst "${void}" "Void Linux" "void"
+}
+
+
+hlp(){
+echo -e "\n${yl}Usage: ${bl}linux-distro [${gr}COMMAMD${bl}] [${gr}ARGUMENTS${bl}]:\n"
+echo -e "${bl}List of all available commands\n"
+echo -e "${gr}  about          ${bl}- Show information about.\n"
+echo -e "${gr}  help           ${bl}- Show this help information.\n"
+echo -e "${gr}  list           ${bl}- Show supported distributions.\n"
+echo -e "${gr}  update         ${bl}- Update and install this tool.\n"
+echo -e "${gr}  login          ${bl}- Start login shell for specified distribution.\n"
+echo -e "${gr}  install        ${bl}- Install a specified distribution.\n"
+echo -e "${gr}  remove         ${bl}- Remove a specified distribution."
+echo -e "${rd}                   WARNING: This command destroys data.\n\n"
+
+}
+
+
+
+update(){
+    apt-get update && apt-get upgrade -y
+    apt-get install proot-distro -y
+}
+
+about(){
+clear
+echo -e "${gr}"
+echo " _______    ______     _______              _________"
+sleep 1
+echo "(  ___  )  (  ___ \   (  ___  )  |\     /|  \__   __/"
+sleep 1
+echo "| (   ) |  | (   ) )  | (   ) |  | )   ( |     ) (   "
+sleep 1
+echo "| (___) |  | (__/ /   | |   | |  | |   | |     | |   "
+sleep 1
+echo "|  ___  |  |  __ (    | |   | |  | |   | |     | |   "
+sleep 1
+echo "| (   ) |  | (  \ \   | |   | |  | |   | |     | |   "
+sleep 1
+echo "| )   ( |  | )___) )  | (___) |  | (___) |     | |   "
+sleep 1
+echo "|/     \|  |/ \___/   (_______)  (_______)     )_(   "
+sleep 1
+
+echo -e "\n          ${rd}<--- ${gr}  Youtube : Mr Ideal ${rd} --->"
+sleep 1
+echo -e "         ${rd}<--- ${gr}  Youtube : Mr Idealhat ${rd} --->"
+sleep 1
+echo -e "        ${rd}<--- ${gr}  Youtube : Adarsh Addee ${rd} --->\n\n"
+sleep 1
+echo -e "${gr}Created by: ${bl}Adarsh Gupta (Adarsh Addee)."
+echo -e "${gr}CREDITS: ${bl}Proot-Distro v1.8.00 by @xeffyr.\n\n"
+}
+
+login(){
+
+if [ -d /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/${1} ]
+then
+        proot-distro login ${1}
+fi
+
+}
+
+super_login(){
+
+if [[ $1 == "ubuntu" ]]
+then
+	login "${ub}"
+
+elif [[ $1 == "alpine" ]]
+then
+	login "${alp}"
+
+elif [[ $1 == "archlinux" ]]
+then
+	login "${arch}"
+
+
+elif [[ $1 == "debian" ]]
+then
+	login "${deb}"
+
+elif [[ $1 == "fedora" ]]
+then
+	login "${fed}"
+
+elif [[ $1 == "opensuse" ]]
+then
+	login "${open}"
+
+elif [[ $1 == "void" ]]
+then
+	login "${void}"
+
+else
+        echo "${1} Not installed"
+fi
+}
+
+ins(){
+
+if [ ! -d /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/${1} ]
+then
+	proot-distro install ${1}
+	clear
+fi
+}
+
+super_ins(){
+	case $1 in
+	"alpine")
+		ins ${alp};
+		echo "${gr}Execute by ${bl}linux-distro login alpine";;
+
+	"archlinux")
+                ins ${arch};
+		echo "${gr}Execute by ${bl}linux-distro login archlinux";;
+
+	"debian")
+                ins ${deb};
+		echo "${gr}Execute by ${bl}linux-distro login debian";;
+
+	"fedora")
+                ins ${fed};
+		echo "${gr}Execute by ${bl}linux-distro login fedora";;
+
+	"ubuntu")
+                ins ${ub};
+		echo "${gr}Execute by ${bl}linux-distro login ubuntu";;
+
+	"void")
+		ins ${void};
+		echo "${gr}Execute by ${bl}linux-distro login void";;
+
+	"opensuse")
+		ins ${open};
+		echo "${gr}Execute by ${bl}linux-distro login opensuse";;
+
+	*)
+		echo "${1} not found";;
+	esac
+}
+
+rem(){
+
+if [ -d /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/${1} ]
+then
+	proot-distro remove ${1}
+fi
+proot-distro remove $1
+}
+
+
+super_rem(){
+        case $1 in
+        "alpine")
+		rem "${alp}";;
+
+        "archlinux")
+                rem "${arch}";;
+
+        "debian")
+               rem "${deb}";;
+
+        "fedora")
+               rem "${fed}";;
+
+        "ubuntu")
+                rem "${ub}";;
+
+        "opensuse")
+		rem "${opeh}";;
+
+	"void")
+		rem "{void}";;
+	*)
+                echo "${1} not found";;
+
+        esac
+}
+
+case $1 in
+
+	"login")
+		super_login $2;;
+
+	"install")
+		super_ins $2;;
+
+	"remove")
+		super_rem $2;;
+
+	"about")
+		about;;
+
+	"list")
+		super_lst;;
+
+	"update")
+		update;;
+
+	"help")
+		hlp;;
+
+	"" | * )
+		echo -e "\n${yl}Usage: ${bl}linux-distro [${gr}COMMAMD${bl}] [${gr}ARGUMENTS${bl}]\n";;
+
+esac
+
