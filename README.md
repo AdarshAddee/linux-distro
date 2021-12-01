@@ -16,6 +16,18 @@ There are the list of some supported distributions of linux-distro [proot-distro
 * openSUSE (Tumbleweed)
 * Void Linux 
 
+***
 
+# Commands
+```
+linux-distro <command> [ARGUMENT]
+```
 
+# List of commands
+`` help `` - Display help
+`` list `` - Display supported distributions list
+`` update `` - update to latest version 
+`` install `` - install specific distro
+`` login `` - login specific distro
+`` remove `` - remove specific distro
 
