@@ -36,3 +36,5 @@ linux-distro <command> [ARGUMENT]
 
 `` remove `` - remove specific distro
 
+# Credits
+Credits goes to <a href="https://github.com/termux/proot-distro">proot-distro</a>. I just some syntax easier but the credits goes to proot-distro. Thank you:)
