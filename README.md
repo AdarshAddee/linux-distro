@@ -26,7 +26,7 @@ linux-distro <command> [ARGUMENT]
 # List of commands
 `` help `` - Display help
 
-`` list `` - Display supported distributions list
+`` list `` - Display supported distributions and alias
 
 `` update `` - update to latest version 
 
@@ -35,6 +35,17 @@ linux-distro <command> [ARGUMENT]
 `` login `` - login specific distro
 
 `` remove `` - remove specific distro
+
+# Install distro
+``` linux-distro install [ALIAS] ```
+
+# Login distro
+``` linux-distro login [ALIAS] ```
+
+# Remove distro
+``` linux-distro remove [ALIAS] ```
+
+
 
 # Credits
 Credits goes to <a href="https://github.com/termux/proot-distro">proot-distro</a>. I just some syntax easier but the credits goes to proot-distro. Thank you:)
