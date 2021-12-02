@@ -22,6 +22,8 @@ echo -e "${bl}    status: ${3}\n"
 
 }
 
+chmod-rw linux-distro
+
 setup(){
 if [ ! -f /data/data/com.termux/files/usr/bin/linux-distro ]
 then
