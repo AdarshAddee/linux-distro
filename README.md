@@ -1,6 +1,9 @@
 # linux-distro
 linux-distro is a free tool which helps us to install the minimal versions of linux-distroes with the help of pre-built existing packages named proot-distro. There are 7 linux-distroes with minimal versions. you can install it and use it with root access. I don't know why but only ubuntu works perfectly. I recommend you guys to install ubuntu in your termux. 
 
+# Subscribe
+hey there, You can subscribe <a href="https://youtube.com/c/mridealhat">Mr Idealhat</a> for interesting videos OR follow <a href="https://mr-idealhat.blogspot.com">Mr Idealhat</a> Blogger website for interesting blogs. Search "Adarsh Addee Vlogs" on YouTube and subscribe for my vlog videos. 
+
 # Installation
 ```
 apt update && apt upgrade -y && apt-get install git -y && git clone https://github.com/adarshaddee/linux-distro.git
