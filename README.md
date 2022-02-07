@@ -24,7 +24,7 @@ linux-distro <command> [ARGUMENT]
 ```
 
 # List of commands
-`` help `` - Display help
+``` help ``` - Display help
 
 `` list `` - Display supported distributions and alias
 
